@@ -1,0 +1,12 @@
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    width: 150px;
+}
+
+.search {
+    margin: 10px 0;
+}
