@@ -1,0 +1,21 @@
+<h1>Dog List</h1>
+<div class="search">
+    검색: <input type="text"/>
+    <button (click)="fnHello()">검색</button>
+</div>
+<div class="dogList">
+    <table>
+        <tr>
+            <th>Breed_ID</th>
+            <th>대표 품종명(En)</th>
+            <th>대표 품종명(kr)</th>
+        </tr>
+        @for (list of post; track $index) {
+            <tr>
+                <td>{{list.id}}</td>
+                <td>{{list.name}}</td>
+                <td>{{list.message}}</td>
+            </tr>
+        }
+    </table>
+</div>

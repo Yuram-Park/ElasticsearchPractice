@@ -1,0 +1,13 @@
+<h2>List</h2>
+Text: <input type="text" #newInput/>
+<button (click)="fnAdd(newInput.value)">add</button>
+<ul>
+    @for (list of text; track $index){
+        <li>{{list}}</li>
+    }
+</ul>
+
+<hr>
+
+<h2>Board List</h2>
+Title: 
