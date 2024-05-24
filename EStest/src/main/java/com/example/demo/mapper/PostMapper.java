@@ -10,6 +10,6 @@ import com.example.demo.domain.Post;
 @Mapper
 public interface PostMapper {
 	
-	@Select("SELECT * FROM test")
+	@Select("SELECT breed_id, animal_species, breed_name, breed_name_ko FROM breed")
 	List<Post> selectAll();
 }

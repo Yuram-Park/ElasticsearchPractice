@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Post {
 	
-	private int id;
-	private String name;
-	private String message;
+	private int breed_id;
+	private String animal_species;
+	private String breed_name;
+	private String breed_name_ko;
 }

@@ -7,14 +7,16 @@
     <table>
         <tr>
             <th>Breed_ID</th>
+            <th>종</th>
             <th>대표 품종명(En)</th>
             <th>대표 품종명(kr)</th>
         </tr>
         @for (list of post; track $index) {
             <tr>
-                <td>{{list.id}}</td>
-                <td>{{list.name}}</td>
-                <td>{{list.message}}</td>
+                <td>{{list.breed_id}}</td>
+                <td>{{list.animal_species}}</td>
+                <td>{{list.breed_name}}</td>
+                <td>{{list.breed_name_ko}}</td>
             </tr>
         }
     </table>
