@@ -6,13 +6,21 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.Setting;
 
+import com.example.demo.domain.Breed;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Document(indexName="breed")
 @Getter
 @Setter
 @Setting(replicas = 0)
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class BreedDocument {
 
 	@Id
@@ -26,4 +34,11 @@ public class BreedDocument {
 	
 	@Field(type = FieldType.Text)
 	private String breedNameKo;
+	
+	public static BreedDocument save(Breed breed) {
+		return BreedDocument.builder()
+				.breedId(breed.getBreedId())
+				.breedName(breed.getBreedName())
+				.build();
+	}
 }
