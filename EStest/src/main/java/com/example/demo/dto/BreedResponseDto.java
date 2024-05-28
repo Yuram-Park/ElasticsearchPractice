@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.document.BreedDocument;
+import com.example.demo.document.LongDocument;
 import com.example.demo.domain.Breed;
 
 import lombok.Data;
@@ -25,5 +26,11 @@ public class BreedResponseDto {
 	public BreedResponseDto(BreedDocument breedDocument) {
 		this.breedId = breedDocument.getBreedId();
 		this.breedName = breedDocument.getBreedName();
+	}
+	
+	public BreedResponseDto(LongDocument longDocument) {
+		this.breedId = longDocument.getBreedId();
+		this.breedName = longDocument.getBreedName();
+		this.breedNameKo = longDocument.getBreedNameKo();
 	}
 }

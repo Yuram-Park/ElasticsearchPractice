@@ -1,0 +1,32 @@
+{
+  "analysis": {
+    "tokenizer": {
+      "nori_none": {
+        "type": "nori_tokenizer",
+        "decompound_mode": "none"
+      },
+      "nori_discard": {
+        "type": "nori_tokenizer",
+        "decompound_mode": "discard"
+      },
+      "nori_mixed": {
+        "type": "nori_tokenizer",
+        "decompound_mode": "mixed"
+      }
+    },
+    "filter": {
+          "stopwords": {
+            "type": "stop",
+            "stopwords": [" "]
+          }
+    },
+    "analyzer": {
+      "nori": {
+          "type": "custom",
+          "tokenizer": "nori_mixed",
+          "filter": ["stop", "stopwords", "nori_part_of_speech"],
+          "char_filter": ["html_strip"]
+        }
+    }
+  }
+}
