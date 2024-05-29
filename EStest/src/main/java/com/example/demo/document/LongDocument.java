@@ -24,6 +24,7 @@ import lombok.Setter;
 @Setting(replicas = 0, settingPath = "/elasticsearch/settings.json")
 @Mapping(mappingPath = "/elasticsearch/mappings.json")
 public class LongDocument {
+	
 	@Id
 	private Integer breedId;
 	

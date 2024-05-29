@@ -46,21 +46,17 @@ public class MainController {
 		return "저장 완료";
 	}
 	
+	// Custom Repository 기본검색
 	@GetMapping("/long/{breed}")
 	public List<BreedResponseDto> main1(@PathVariable("breed") String name) {
 		return breedService.searchName1(name);
 	}
 	
-	// NativeQuery
-	@GetMapping("/longNative/{breed}")
+	// NativeQuery + Fuzzy
+	@GetMapping("/longNativeFuzzy/{breed}")
 	public List<LongDocument> main2(@PathVariable("breed") String name) {
 		return breedService.searchName2(name);
 	}
-	
-	// NativeQuery + Fuzzy
-		@GetMapping("/longNativeFuzzy/{breed}")
-		public List<LongDocument> main3(@PathVariable("breed") String name) {
-			return breedService.searchName3(name);
-		}
+
 		
 }

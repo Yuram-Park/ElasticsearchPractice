@@ -27,7 +27,11 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '3.0.3'
+	
+	// Elasticsearch
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation group: 'org.apache.lucene', name: 'lucene-analyzers-common', version: '8.11.3'
+	
 
 }
 

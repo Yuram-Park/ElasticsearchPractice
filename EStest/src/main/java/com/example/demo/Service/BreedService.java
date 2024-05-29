@@ -46,14 +46,10 @@ public class BreedService {
 		return result;
 	}
 	
-	// 검색(NativeQuery)
+	// 검색(NativeQuery + Fuzzy)
 	public List<LongDocument> searchName2(String breedName) {
 		return longSearchRepository.search2(breedName);
 	}
 	
-	// fuzzy 검색
-	public List<LongDocument> searchName3(String breedName) {
-		return longSearchRepository.search3(breedName);
-	}
 	
 }
