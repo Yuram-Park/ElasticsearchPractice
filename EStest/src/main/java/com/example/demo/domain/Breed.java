@@ -7,8 +7,10 @@ import lombok.Setter;
 @Setter
 public class Breed {
 
-	private Integer breedId;
-	private String animalSpecies;
-	private String breedName;
-	private String breedNameKo;
+	private Integer breed_id;
+	private String animal_species;
+	private String breed_name;
+	private String breed_name_ko;
+	private String breed_characteristic;
+	private String breed_note;
 }

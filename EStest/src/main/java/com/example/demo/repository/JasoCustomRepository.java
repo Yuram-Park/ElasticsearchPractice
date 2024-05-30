@@ -10,39 +10,30 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.document.LongDocument;
+import com.example.demo.document.JasoDocument;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository
-public class LongSearchRepository {
+public class JasoCustomRepository {
 
 	private final ElasticsearchOperations elasticsearchOperations;
-
-	// 기본 검색
-	public LongDocument search1(Integer breedId) {
-		return elasticsearchOperations.get(breedId.toString(), LongDocument.class);
-	}
 	
-
-	// NativeQuery + fuzzy
-	public List<LongDocument> search2(String breedName) {
+	public List<JasoDocument> jasoSearch(String breedName) {
 		
 		Query query = NativeQuery.builder()
 				.withQuery(q -> q
 						.multiMatch(m -> m
-								.fields("breedName", "breedNameKo")
+								.fields("breed_name", "breed_name_ko")
 								.query(breedName)
-								.fuzziness("2")
+								.fuzziness("1")
 						)
 				)
 				.build();
-
-		SearchHits<LongDocument> searchHits = elasticsearchOperations.search(query, LongDocument.class);
 		
+		SearchHits<JasoDocument> searchHits = elasticsearchOperations.search(query, JasoDocument.class);
+		System.out.println(searchHits.getTotalHits());
 		return searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
 	}
-	
-	
 }

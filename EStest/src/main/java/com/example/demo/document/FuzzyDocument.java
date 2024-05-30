@@ -15,33 +15,42 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Document(indexName="long")
+@Document(indexName="fuzzy")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Setting(replicas = 0, settingPath = "/elasticsearch/settings.json")
-@Mapping(mappingPath = "/elasticsearch/mappings.json")
-public class LongDocument {
-	
+@Setting(replicas = 0, settingPath = "/elasticsearchFuzzy/settings.json")
+@Mapping(mappingPath = "/elasticsearchFuzzy/mappings.json")
+public class FuzzyDocument {
+
 	@Id
-	private Integer breedId;
+	private Integer breed_id;
 	
 	@Field(type = FieldType.Text)
-	private String animalSpecies;
+	private String animal_species;
 	
 	@Field(type = FieldType.Text)
-	private String breedName;
+	private String breed_name;
 	
 	@Field(type = FieldType.Text)
-	private String breedNameKo;
+	private String breed_name_ko;
 	
-	public static LongDocument save(Breed breed) {
-		return LongDocument.builder()
-				.breedId(breed.getBreedId())
-				.breedName(breed.getBreedName())
-				.breedNameKo(breed.getBreedNameKo())
+	@Field(type = FieldType.Text)
+	private String breed_characteristic;
+	
+	@Field(type = FieldType.Text)
+	private String breed_note;
+	
+	public static FuzzyDocument save(Breed breed) {
+		return FuzzyDocument.builder()
+				.breed_id(breed.getBreed_id())
+				.animal_species(breed.getAnimal_species())
+				.breed_name(breed.getBreed_name())
+				.breed_name_ko(breed.getBreed_name_ko())
+				.breed_characteristic(breed.getBreed_characteristic())
+				.breed_note(breed.getBreed_note())
 				.build();
 	}
 }

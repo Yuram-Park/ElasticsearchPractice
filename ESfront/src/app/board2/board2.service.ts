@@ -11,7 +11,7 @@ export interface Post {
     providedIn: 'root'
   })
 export class Board2Service {
-    url = 'http://localhost:8080/api/post'
+    url = 'http://localhost:8080/jasoSearch/ㅇㅇㄷㅇ'
 
     constructor(private http: HttpClient) {}
 

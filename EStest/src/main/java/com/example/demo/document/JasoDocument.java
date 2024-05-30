@@ -15,32 +15,42 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Document(indexName="board")
+@Document(indexName="jaso")
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@Setting(replicas = 0, settingPath = "/elasticsearch/settings.json")
-@Mapping(mappingPath = "/elasticsearch/mappings.json")
-public class BoardDocument {
+@Setting(replicas = 0, settingPath = "/elasticsearchJaso/settings.json")
+@Mapping(mappingPath = "/elasticsearchJaso/mappings.json")
+public class JasoDocument {
 
 	@Id
-	private Integer breedId;
+	private Integer breed_id;
 	
 	@Field(type = FieldType.Text)
-	private String animalSpecies;
+	private String animal_species;
 	
 	@Field(type = FieldType.Text)
-	private String breedName;
+	private String breed_name;
 	
 	@Field(type = FieldType.Text)
-	private String breedNameKo;
+	private String breed_name_ko;
 	
-	public static BoardDocument save(Breed breed) {
-		return BoardDocument.builder()
-				.breedId(breed.getBreedId())
-				.breedName(breed.getBreedName())
+	@Field(type = FieldType.Text)
+	private String breed_characteristic;
+	
+	@Field(type = FieldType.Text)
+	private String breed_note;
+	
+	public static JasoDocument save(Breed breed) {
+		return JasoDocument.builder()
+				.breed_id(breed.getBreed_id())
+				.animal_species(breed.getAnimal_species())
+				.breed_name(breed.getBreed_name())
+				.breed_name_ko(breed.getBreed_name_ko())
+				.breed_characteristic(breed.getBreed_characteristic())
+				.breed_note(breed.getBreed_note())
 				.build();
 	}
 }

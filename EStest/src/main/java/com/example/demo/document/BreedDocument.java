@@ -37,8 +37,10 @@ public class BreedDocument {
 	
 	public static BreedDocument save(Breed breed) {
 		return BreedDocument.builder()
-				.breedId(breed.getBreedId())
-				.breedName(breed.getBreedName())
+				.breedId(breed.getBreed_id())
+				.animalSpecies(breed.getAnimal_species())
+				.breedName(breed.getBreed_name())
+				.breedNameKo(breed.getBreed_name_ko())
 				.build();
 	}
 }

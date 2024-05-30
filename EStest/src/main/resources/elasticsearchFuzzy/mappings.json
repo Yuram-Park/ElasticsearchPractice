@@ -1,0 +1,14 @@
+{
+	"properties": {
+		"breed_name": {
+			"type": "text",
+			"analyzer": "nori",
+			"search_analyzer": "nori"
+		},
+		"breed_name_ko": {
+			"type": "text",
+			"analyzer": "nori",
+			"search_analyzer": "nori"
+		}
+	}
+}

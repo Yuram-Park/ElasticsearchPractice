@@ -6,12 +6,15 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.document.BreedDocument;
-import com.example.demo.document.LongDocument;
+import com.example.demo.document.FuzzyDocument;
+import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
 import com.example.demo.repository.BreedElasticsearchRepository;
-import com.example.demo.repository.LongElasticsearchRepository;
-import com.example.demo.repository.LongSearchRepository;
+import com.example.demo.repository.FuzzyCustomRepository;
+import com.example.demo.repository.FuzzyElasticsearchRepository;
+import com.example.demo.repository.JasoCustomRepository;
+import com.example.demo.repository.JasoElasticsearchRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,10 +23,12 @@ import lombok.RequiredArgsConstructor;
 public class BreedService {
 	
 	private final BreedElasticsearchRepository breedElasticsearchRepository;
-	private final LongElasticsearchRepository longElasticsearchRepository;
-	private final LongSearchRepository longSearchRepository;
+	private final FuzzyElasticsearchRepository fuzzyElasticsearchRepository;
+	private final FuzzyCustomRepository fuzzyCustomRepository;
+	private final JasoElasticsearchRepository jasoElasticsearchRepository;
+	private final JasoCustomRepository jasoCustomRepository;
 	
-	// 저장 및 검색
+	// 기본 저장 및 검색
 	public void save(Breed breed) {
 		breedElasticsearchRepository.save(BreedDocument.save(breed));
 	}
@@ -35,21 +40,30 @@ public class BreedService {
 		return result;
 	}
 	
-	// 저장 및 검색(한국어, 한국어 조사 제거)
-	public void save1(Breed breed) {
-		longElasticsearchRepository.save(LongDocument.save(breed));
+	// 한국어, 한국어 조사 제거 저장 및 검색
+	public void koSave(Breed breed) {
+		fuzzyElasticsearchRepository.save(FuzzyDocument.save(breed));
 	}
 	
-	public List<BreedResponseDto> searchName1(String breedName) {
+	public List<BreedResponseDto> koSearch(String breedName) {
 		
-		List<BreedResponseDto> result = longElasticsearchRepository.findByBreedNameKo(breedName).stream().map(BreedResponseDto::new).collect(Collectors.toList());
+		List<BreedResponseDto> result = fuzzyCustomRepository.findByBreed_name(breedName).stream().map(BreedResponseDto::new).collect(Collectors.toList());
 		return result;
 	}
 	
-	// 검색(NativeQuery + Fuzzy)
-	public List<LongDocument> searchName2(String breedName) {
-		return longSearchRepository.search2(breedName);
+	// Fuzzy 검색
+	public List<FuzzyDocument> fuzzySearch(String breedName) {
+		return fuzzyCustomRepository.fuzzySearch(breedName);
 	}
 	
+	
+	// 초성 검색
+	public void jasoSave(Breed breed) {
+		jasoElasticsearchRepository.save(JasoDocument.save(breed));
+	}
+	
+	public List<JasoDocument> jasoSearch(String breedName) {
+		return jasoCustomRepository.jasoSearch(breedName);
+	}
 	
 }

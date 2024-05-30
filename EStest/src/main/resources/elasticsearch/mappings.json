@@ -1,9 +1,0 @@
-{
-    "properties": {
-      "breedNameKo": {
-        "type": "text",
-        "analyzer": "nori",
-        "search_analyzer": "nori"
-      }
-    }
-}
