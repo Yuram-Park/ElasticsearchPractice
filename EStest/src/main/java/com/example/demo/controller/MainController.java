@@ -14,6 +14,7 @@ import com.example.demo.document.FuzzyDocument;
 import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
+import com.example.demo.util.JamoParserUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +25,7 @@ public class MainController {
 	//private final PostRepository postRepository;
 	
 	private final BreedService breedService;
+	private final JamoParserUtil jamoParserUtil;
 	
 //	@RequestMapping("/api/post")
 //	public List<Post> main() {
@@ -61,7 +63,7 @@ public class MainController {
 	}
 	
 	
-	// 초성 검색
+	// 초성 검색(플러그인 도입)
 	@PostMapping("/jasoSave")
 	public String jasoSave(@RequestBody Breed breed) {
 		breedService.jasoSave(breed);
@@ -72,6 +74,13 @@ public class MainController {
 	public List<JasoDocument> jasoSearch(@PathVariable("breed") String name) {
 		return breedService.jasoSearch(name);
 	}
-
+	
+	
+	// 초성 검색(유니코드 검색)
+	@GetMapping("/uniSearch/{breed}")
+	public String uniSearch(@PathVariable("breed") String name) {
+		jamoParserUtil.parse(name);
+		return "hi";
+	}
 		
 }

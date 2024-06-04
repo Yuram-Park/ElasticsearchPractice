@@ -30,9 +30,12 @@ public class BreedResponseDto {
 	}
 	
 	public BreedResponseDto(BreedDocument breedDocument) {
-		this.breed_id = breedDocument.getBreedId();
-		this.animal_species = breedDocument.getAnimalSpecies();
-		this.breed_name = breedDocument.getBreedName();
+		this.breed_id = breedDocument.getBreed_id();
+		this.animal_species = breedDocument.getAnimal_species();
+		this.breed_name = breedDocument.getBreed_name();
+		this.breed_name_ko = breedDocument.getBreed_name_ko();
+		this.breed_characteristic = breedDocument.getBreed_characteristic();
+		this.breed_note = breedDocument.getBreed_note();
 	}
 	
 	public BreedResponseDto(FuzzyDocument fuzzyDocument) {

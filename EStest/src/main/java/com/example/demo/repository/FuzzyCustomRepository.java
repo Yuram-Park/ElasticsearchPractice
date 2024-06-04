@@ -54,7 +54,7 @@ public class FuzzyCustomRepository {
 				.build();
 				
 		SearchHits<FuzzyDocument> searchHits = elasticsearchOperations.search(nquery, FuzzyDocument.class);
-		System.out.println(searchHits.getTotalHits());
+		
 		return searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
 	}
 }

@@ -33,7 +33,7 @@ public class JasoCustomRepository {
 				.build();
 		
 		SearchHits<JasoDocument> searchHits = elasticsearchOperations.search(query, JasoDocument.class);
-		System.out.println(searchHits.getTotalHits());
+		
 		return searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
 	}
 }

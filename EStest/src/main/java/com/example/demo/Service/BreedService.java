@@ -35,7 +35,7 @@ public class BreedService {
 	
 	public List<BreedResponseDto> searchName(String breedName) {
 		
-		List<BreedResponseDto> result = breedElasticsearchRepository.findByBreedName(breedName).stream().map(BreedResponseDto::new).collect(Collectors.toList());
+		List<BreedResponseDto> result = null;
 		
 		return result;
 	}
@@ -57,7 +57,7 @@ public class BreedService {
 	}
 	
 	
-	// 초성 검색
+	// 초성 검색(플러그인 도입)
 	public void jasoSave(Breed breed) {
 		jasoElasticsearchRepository.save(JasoDocument.save(breed));
 	}
@@ -66,4 +66,10 @@ public class BreedService {
 		return jasoCustomRepository.jasoSearch(breedName);
 	}
 	
+	
+	// 초성 검색(유니코드)
+//	public List<BreedDocument> uniSearch(String breedName) {
+//		
+//		
+//	}
 }

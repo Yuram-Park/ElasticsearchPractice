@@ -10,5 +10,4 @@ import com.example.demo.document.BreedDocument;
 @Repository
 public interface BreedElasticsearchRepository extends ElasticsearchRepository<BreedDocument, Integer>{
 
-	List<BreedDocument> findByBreedName(String breed_name);
 }
