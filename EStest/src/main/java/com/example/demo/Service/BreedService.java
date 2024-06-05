@@ -15,6 +15,7 @@ import com.example.demo.repository.FuzzyCustomRepository;
 import com.example.demo.repository.FuzzyElasticsearchRepository;
 import com.example.demo.repository.JasoCustomRepository;
 import com.example.demo.repository.JasoElasticsearchRepository;
+import com.example.demo.util.JamoParserUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -68,8 +69,8 @@ public class BreedService {
 	
 	
 	// 초성 검색(유니코드)
-//	public List<BreedDocument> uniSearch(String breedName) {
-//		
-//		
-//	}
+	public List<BreedDocument> uniSearch(String breedName) {
+		
+		
+	}
 }

@@ -25,7 +25,6 @@ public class MainController {
 	//private final PostRepository postRepository;
 	
 	private final BreedService breedService;
-	private final JamoParserUtil jamoParserUtil;
 	
 //	@RequestMapping("/api/post")
 //	public List<Post> main() {
@@ -79,7 +78,7 @@ public class MainController {
 	// 초성 검색(유니코드 검색)
 	@GetMapping("/uniSearch/{breed}")
 	public String uniSearch(@PathVariable("breed") String name) {
-		jamoParserUtil.parse(name);
+		
 		return "hi";
 	}
 		
