@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import io.micrometer.common.util.StringUtils;
 
-@Component("jamoParserUtil")
+
 public class JamoParserUtil {
 	
 	// 한글 소리 마디의 Unicode 시작 지점 (가)
@@ -34,7 +34,6 @@ public class JamoParserUtil {
 		public static String parse(String token) {
 			int len = token.length();
 			
-//			char[][] result = new char[len][2];
 			
 			StringBuilder result = new StringBuilder();
 			
@@ -59,6 +58,8 @@ public class JamoParserUtil {
 					result.append("[\\u" + Integer.toString(first, 16).toUpperCase() + "-\\u" + Integer.toString(last, 16).toUpperCase() + "]");
 				}
 			}
+			String repeat = result.toString();
+			result.append("|" + repeat + ".+");
 			System.out.println(result);
 			return result.toString();
 		}

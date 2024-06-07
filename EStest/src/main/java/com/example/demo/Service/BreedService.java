@@ -10,12 +10,12 @@ import com.example.demo.document.FuzzyDocument;
 import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
+import com.example.demo.repository.BreedCustomRepository;
 import com.example.demo.repository.BreedElasticsearchRepository;
 import com.example.demo.repository.FuzzyCustomRepository;
 import com.example.demo.repository.FuzzyElasticsearchRepository;
 import com.example.demo.repository.JasoCustomRepository;
 import com.example.demo.repository.JasoElasticsearchRepository;
-import com.example.demo.util.JamoParserUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +28,7 @@ public class BreedService {
 	private final FuzzyCustomRepository fuzzyCustomRepository;
 	private final JasoElasticsearchRepository jasoElasticsearchRepository;
 	private final JasoCustomRepository jasoCustomRepository;
+	private final BreedCustomRepository breedCustomRepository;
 	
 	// 기본 저장 및 검색
 	public void save(Breed breed) {
@@ -70,7 +71,6 @@ public class BreedService {
 	
 	// 초성 검색(유니코드)
 	public List<BreedDocument> uniSearch(String breedName) {
-		
-		
+		return breedCustomRepository.uniSearch(breedName);
 	}
 }

@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Service.BreedService;
+import com.example.demo.document.BreedDocument;
 import com.example.demo.document.FuzzyDocument;
 import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
-import com.example.demo.util.JamoParserUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -77,9 +77,8 @@ public class MainController {
 	
 	// 초성 검색(유니코드 검색)
 	@GetMapping("/uniSearch/{breed}")
-	public String uniSearch(@PathVariable("breed") String name) {
-		
-		return "hi";
+	public List<BreedDocument> uniSearch(@PathVariable("breed") String name) {
+		return breedService.uniSearch(name);
 	}
 		
 }
