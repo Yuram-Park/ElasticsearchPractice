@@ -1,0 +1,16 @@
+{
+  "properties": {
+    "breed_name": {
+      "type": "text",
+      "store": true,
+      "analyzer": "suggest_index_analyzer",
+      "search_analyzer": "suggest_search_analyzer"
+    },
+    "breed_name_ko": {
+      "type": "text",
+      "store": true,
+      "analyzer": "suggest_index_analyzer",
+      "search_analyzer": "suggest_search_analyzer"
+    }
+  }
+}

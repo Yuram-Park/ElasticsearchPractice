@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Service.BreedService;
 import com.example.demo.document.BreedDocument;
+import com.example.demo.document.ChosungDocument;
 import com.example.demo.document.FuzzyDocument;
 import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
+import com.example.demo.util.JamoParserUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -78,7 +80,20 @@ public class MainController {
 	// 초성 검색(유니코드 검색)
 	@GetMapping("/uniSearch/{breed}")
 	public List<BreedDocument> uniSearch(@PathVariable("breed") String name) {
+		JamoParserUtil.parse(name);
 		return breedService.uniSearch(name);
+	}
+	
+	// 초성 검색(플러그인 - 초성 수정)
+	@PostMapping("/chosungSave")
+	public String chosungSave(@RequestBody Breed breed) {
+		breedService.chosungSave(breed);
+		return "저장 완료";
+	}
+	
+	@GetMapping("/chosungSearch/{breed}")
+	public List<ChosungDocument> chosungSearch(@PathVariable("breed") String name) {
+		return breedService.chosungSearch(name);
 	}
 		
 }

@@ -6,12 +6,15 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.document.BreedDocument;
+import com.example.demo.document.ChosungDocument;
 import com.example.demo.document.FuzzyDocument;
 import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
 import com.example.demo.repository.BreedCustomRepository;
 import com.example.demo.repository.BreedElasticsearchRepository;
+import com.example.demo.repository.ChosungCustomRepository;
+import com.example.demo.repository.ChosungElasticsearchRepository;
 import com.example.demo.repository.FuzzyCustomRepository;
 import com.example.demo.repository.FuzzyElasticsearchRepository;
 import com.example.demo.repository.JasoCustomRepository;
@@ -29,6 +32,8 @@ public class BreedService {
 	private final JasoElasticsearchRepository jasoElasticsearchRepository;
 	private final JasoCustomRepository jasoCustomRepository;
 	private final BreedCustomRepository breedCustomRepository;
+	private final ChosungElasticsearchRepository chosungElasticsearchRepository;
+	private final ChosungCustomRepository chosungCustomRepository;
 	
 	// 기본 저장 및 검색
 	public void save(Breed breed) {
@@ -72,5 +77,15 @@ public class BreedService {
 	// 초성 검색(유니코드)
 	public List<BreedDocument> uniSearch(String breedName) {
 		return breedCustomRepository.uniSearch(breedName);
+	}
+	
+	
+	// 초성 검색(플러그인 - 초성수정)
+	public void chosungSave(Breed breed) {
+		chosungElasticsearchRepository.save(ChosungDocument.save(breed));
+	}
+	
+	public List<ChosungDocument> chosungSearch(String breedName) {
+		return chosungCustomRepository.chosungSearch(breedName);
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.data.elasticsearch.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.document.BreedDocument;
+import com.example.demo.util.ChosungParserUtil;
 import com.example.demo.util.JamoParserUtil;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.RegexpQuery;
@@ -26,13 +27,14 @@ public class BreedCustomRepository {
 	public List<BreedDocument> uniSearch(String breedName) {
 		
 		
-		String value = JamoParserUtil.parse(breedName);
+		String value = ChosungParserUtil.parse(breedName);
 		
 		Query nquery = NativeQuery.builder()
 				.withQuery(q -> q
 						.regexp(r -> r
 								.field("breed_name_ko")
-								.value("에|에.+")
+								.value(value)
+								//.value("에|에.+")
 						)
 				)
 				.build();
