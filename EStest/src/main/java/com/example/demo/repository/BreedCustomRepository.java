@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.document.BreedDocument;
 import com.example.demo.util.ChosungParserUtil;
-import com.example.demo.util.JamoParserUtil;
+import com.example.demo.util.ChosungParserUtil2;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.RegexpQuery;
 import lombok.RequiredArgsConstructor;
@@ -22,30 +22,25 @@ import lombok.RequiredArgsConstructor;
 public class BreedCustomRepository {
 
 	private final ElasticsearchOperations elasticsearchOperations;
+	private final ChosungParserUtil2 chosungParserUtil;
 	
 	// 초성 검색(유니코드)
 	public List<BreedDocument> uniSearch(String breedName) {
 		
-		
-		String value = ChosungParserUtil.parse(breedName);
+		// 정규표현식
+		String regexp = chosungParserUtil.parse(breedName);
 		
 		Query nquery = NativeQuery.builder()
 				.withQuery(q -> q
 						.regexp(r -> r
 								.field("breed_name_ko")
-								.value(value)
-								//.value("에|에.+")
+								.value(regexp)
 						)
 				)
 				.build();
-		
-		
-		
-		RegexpQuery reg = new RegexpQuery.Builder().field("breed_name_ko").value(value).build();
-		System.out.println(reg); // \\가 두개 들어감..
 
 		SearchHits<BreedDocument> searchHits = elasticsearchOperations.search(nquery, BreedDocument.class);
-		System.out.println();
+
 		return searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
 	}
 }

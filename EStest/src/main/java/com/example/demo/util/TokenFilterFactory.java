@@ -6,6 +6,6 @@ package com.example.demo.util;
 /**
  * 
  */
-public class TokenFilterFactory {
+public abstract class TokenFilterFactory {
 
 }

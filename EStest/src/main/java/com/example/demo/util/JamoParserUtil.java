@@ -36,6 +36,7 @@ public class JamoParserUtil {
 					}
 				}
 			}
+			chosungBuffer.append(chosungBuffer.toString().replaceAll(" ", ""));
 			System.out.println(chosungBuffer.toString());
 			return chosungBuffer.toString();
 		} else {

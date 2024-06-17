@@ -31,7 +31,7 @@ public class ChosungParserUtil {
 			0x314B, 0x314C, 0x314D, 0x314E              // ㅋ, ㅌ, ㅍ, ㅎ  
 	};  
 		
-	public static String parse(String token) {
+	public static String parse(String token) { // ㅇㅇㄷㅇ
 		int len = token.length();
 			
 			
@@ -56,10 +56,12 @@ public class ChosungParserUtil {
 				char last = (char) (first + (COUNT_JUNGSUNG * COUNT_JONGSUNG) - 1);
 					
 				result.append("[\\u" + Integer.toString(first, 16).toUpperCase() + "-\\u" + Integer.toString(last, 16).toUpperCase() + "]");
+				// [\uC544-\uC78F][\uC544-\uC78F][\uB2E4-\uB52F][\uC544-\uC78F]
 			}
 		}
-		String repeat = result.toString();
-		result.append("|" + repeat + ".+");
+		//String repeat = result.toString();
+		//result.append("|" + repeat + ".+");
+		// [\uC544-\uC78F][\uC544-\uC78F][\uB2E4-\uB52F][\uC544-\uC78F]|[\uC544-\uC78F][\uC544-\uC78F][\uB2E4-\uB52F][\uC544-\uC78F].+
 		System.out.println(result);
 		return result.toString();
 	}

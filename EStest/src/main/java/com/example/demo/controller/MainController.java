@@ -80,7 +80,6 @@ public class MainController {
 	// 초성 검색(유니코드 검색)
 	@GetMapping("/uniSearch/{breed}")
 	public List<BreedDocument> uniSearch(@PathVariable("breed") String name) {
-		JamoParserUtil.parse(name);
 		return breedService.uniSearch(name);
 	}
 	
