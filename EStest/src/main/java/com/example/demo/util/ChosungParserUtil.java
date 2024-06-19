@@ -1,9 +1,5 @@
 package com.example.demo.util;
 
-import java.text.Normalizer;
-
-import org.springframework.stereotype.Component;
-
 import io.micrometer.common.util.StringUtils;
 
 

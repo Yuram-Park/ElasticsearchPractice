@@ -35,14 +35,15 @@ public class BreedService {
 	private final ChosungElasticsearchRepository chosungElasticsearchRepository;
 	private final ChosungCustomRepository chosungCustomRepository;
 	
-	// 기본 저장 및 검색
+	// 저장
 	public void save(Breed breed) {
 		breedElasticsearchRepository.save(BreedDocument.save(breed));
 	}
 	
-	public List<BreedResponseDto> searchName(String breedName) {
+	// 검색
+	public BreedDocument searchName(int breedId) {
 		
-		List<BreedResponseDto> result = null;
+		BreedDocument result = breedElasticsearchRepository.findById(breedId).orElseThrow();
 		
 		return result;
 	}
@@ -73,13 +74,6 @@ public class BreedService {
 		return jasoCustomRepository.jasoSearch(breedName);
 	}
 	
-	
-	// 초성 검색(유니코드)
-	public List<BreedDocument> uniSearch(String breedName) {
-		return breedCustomRepository.uniSearch(breedName);
-	}
-	
-	
 	// 초성 검색(플러그인 - 초성수정)
 	public void chosungSave(Breed breed) {
 		chosungElasticsearchRepository.save(ChosungDocument.save(breed));
@@ -88,4 +82,14 @@ public class BreedService {
 	public List<ChosungDocument> chosungSearch(String breedName) {
 		return chosungCustomRepository.chosungSearch(breedName);
 	}
+	
+	// 초성 검색(Regexp)
+	public List<BreedDocument> regSearch(String breedName) {
+		return breedCustomRepository.regSearch(breedName);
+	}
+	
+	// 복합 쿼리(bool)
+	public List<BreedDocument> boolSearch(String breedName) {
+		return breedCustomRepository.boolSearch(breedName);
+	} 
 }

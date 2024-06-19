@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;

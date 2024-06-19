@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "student_name": {
+      "type": "text",
+      "analyzer": "nori"
+    }
+  }
+}

@@ -16,23 +16,14 @@ import com.example.demo.document.FuzzyDocument;
 import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
-import com.example.demo.util.JamoParserUtil;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 public class MainController {
-
-	//private final PostRepository postRepository;
 	
 	private final BreedService breedService;
-	
-//	@RequestMapping("/api/post")
-//	public List<Post> main() {
-//		System.out.println("hi");
-//		return postRepository.getAll();
-//	}
 	
 	@RequestMapping("/save")
 	public String save(@RequestBody Breed breed) {
@@ -40,9 +31,9 @@ public class MainController {
 		return "저장 완료";
 	}
 	
-	@GetMapping("/search/{breed}")
-	public List<BreedResponseDto> main(@PathVariable("breed") String name) {
-		return breedService.searchName(name);
+	@GetMapping("/search/{breedId}")
+	public BreedDocument main(@PathVariable("breedId") int breedId) {
+		return breedService.searchName(breedId);
 	}
 	
 	// 한국어 저장 및 검색
@@ -75,14 +66,7 @@ public class MainController {
 	public List<JasoDocument> jasoSearch(@PathVariable("breed") String name) {
 		return breedService.jasoSearch(name);
 	}
-	
-	
-	// 초성 검색(유니코드 검색)
-	@GetMapping("/uniSearch/{breed}")
-	public List<BreedDocument> uniSearch(@PathVariable("breed") String name) {
-		return breedService.uniSearch(name);
-	}
-	
+
 	// 초성 검색(플러그인 - 초성 수정)
 	@PostMapping("/chosungSave")
 	public String chosungSave(@RequestBody Breed breed) {
@@ -95,4 +79,15 @@ public class MainController {
 		return breedService.chosungSearch(name);
 	}
 		
+	// 초성 검색(Regexp)
+	@GetMapping("/regSearch/{breed}")
+	public List<BreedDocument> regSearch(@PathVariable("breed") String name) {
+		return breedService.regSearch(name);
+	}
+	
+	// 복합 쿼리(bool) 검색
+	@GetMapping("/boolSearch/{breed}")
+	public List<BreedDocument> boolSearch(@PathVariable("breed") String name) {
+		return breedService.boolSearch(name);
+	}
 }
