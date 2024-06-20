@@ -96,14 +96,7 @@ public class ChosungParserUtil2 {
 
 					regexp.append("+.*|.*"); 
 
-					// 초성이 아닌 다른 문자
-				} else {
-					// 한글일 경우
-
-					// 숫자일 경우
-
-					// 영어일 경우? 영어 오타일경우,
-				}
+				} 
 			}
 
 			// 초성 일부만 입력할 경우를 포함

@@ -21,6 +21,8 @@ public class TermParserUtil {
 		String[] strs = originStr.split("");
 
 		StringBuilder regexpResult = new StringBuilder();
+		StringBuilder koreanResult = new StringBuilder();
+		StringBuilder englishResult = new StringBuilder();
 		StringBuilder matchResult = new StringBuilder();
 		StringBuilder numberResult = new StringBuilder();
 		Map<String, Object> resultSet = new HashMap<>();
@@ -34,13 +36,13 @@ public class TermParserUtil {
 
 				// 한글일 때 (가-힣)
 			} else if (str.matches("[가-힣]")) {
-
-				matchResult.append(str);
+				
+				koreanResult.append(str);
 
 				// 영어일 때? 오타일 때?
 			} else if (str.matches("[a-zA-Z]")) {
 
-				matchResult.append(str);
+				englishResult.append(str);
 
 				// 숫자일 때
 			} else if (str.matches("[0-9]")) {
@@ -49,19 +51,21 @@ public class TermParserUtil {
 				// 빈칸일 때
 			} else if (str.equals(" ")) {
 
-				// 초성일 때
 				regexpResult.append(" ");
-
-				// 한글일 때
-				matchResult.append(" ");
+				koreanResult.append(" ");
+				englishResult.append(" ");
+				
 			}
 
 		}
-
-		resultSet.put("regexp", regexpResult.toString());
+		
+		// 한국어 + 영어
+		matchResult.append(koreanResult.toString().trim() + " " + englishResult.toString().trim());
+		
+		resultSet.put("regexp", regexpResult.toString().trim());
 		resultSet.put("match", matchResult.toString());
-		resultSet.put("number", numberResult.toString());
-
+		resultSet.put("number", numberResult.toString().trim());
+		
 		return resultSet;
 	}
 }
