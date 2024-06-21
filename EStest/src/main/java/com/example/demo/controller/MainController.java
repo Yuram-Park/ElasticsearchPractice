@@ -17,6 +17,7 @@ import com.example.demo.document.JasoDocument;
 import com.example.demo.domain.Breed;
 import com.example.demo.dto.BreedResponseDto;
 
+import co.elastic.clients.elasticsearch._types.query_dsl.RegexpQuery;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -89,5 +90,11 @@ public class MainController {
 	@GetMapping("/boolSearch/{breed}")
 	public List<BreedDocument> boolSearch(@PathVariable("breed") String name) {
 		return breedService.boolSearch(name);
+	}
+	
+	// 초성검색(Regexp - 초성 외 문자 escape 사용)
+	@GetMapping("/regEscapeSearch/{term}")
+	public RegexpQuery regEscapeSearch(@PathVariable("term") String term) {
+		return breedService.regEscapeSearch(term);
 	}
 }

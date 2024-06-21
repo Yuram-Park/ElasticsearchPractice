@@ -3,26 +3,25 @@
  */
 package com.example.demo.util;
 
+import java.util.regex.Pattern;
+
 import org.springframework.stereotype.Component;
 
 /**
  * 
  */
-@Component("chosungParserUtil2")
-public class ChosungParserUtil2 {
+@Component("chosungRegexpUtil")
+public class ChosungRegexpUtil {
 
-	public String parse(String originStr) {
+	public String parse(String originTerm) {
 
-		if (!originStr.isBlank()) {
+		if (!originTerm.isBlank() && originTerm.matches(".*[ㄱ-ㅎ]+.*")) {
 
-			originStr = originStr.trim();
-			originStr = originStr.replace("  ", " "); // 공백이 두번 들어간 경우 대체
+			originTerm = originTerm.trim();
+			originTerm = originTerm.replace("  ", " "); // 공백이 두번 들어간 경우 대체
 			
-			String[] strs = originStr.split("");
+			String[] strs = originTerm.split("");
 			StringBuilder regexp = new StringBuilder();
-
-			// ~를 포함하는
-			regexp.append(".*");
 
 			for (String str : strs) {
 				
@@ -91,18 +90,14 @@ public class ChosungParserUtil2 {
 
 					regexp.append(str);
 
-					// 공백일 때
-				} else if (str.equals(" ")) {
-
-					regexp.append("+.*|.*"); 
-
+					// 초성 외 글자일 때
+				} else {
+//					Pattern.quote(str);
+					regexp.append(str);
 				} 
 			}
 
-			// 초성 일부만 입력할 경우를 포함
-			regexp.append("+.*");
-			System.out.println("regexp: " + regexp);
-			return regexp.toString();
+			return Pattern.quote(regexp.toString());
 		} else {
 			return "";
 		}

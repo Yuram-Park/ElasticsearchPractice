@@ -20,6 +20,7 @@ import com.example.demo.repository.FuzzyElasticsearchRepository;
 import com.example.demo.repository.JasoCustomRepository;
 import com.example.demo.repository.JasoElasticsearchRepository;
 
+import co.elastic.clients.elasticsearch._types.query_dsl.RegexpQuery;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -91,5 +92,10 @@ public class BreedService {
 	// 복합 쿼리(bool)
 	public List<BreedDocument> boolSearch(String breedName) {
 		return breedCustomRepository.boolSearch(breedName);
+	} 
+	
+	// 초성검색(Regexp - 초성 외 문자 escape 사용)
+	public RegexpQuery regEscapeSearch(String term) {
+		return breedCustomRepository.regEscapeSearch(term);
 	} 
 }

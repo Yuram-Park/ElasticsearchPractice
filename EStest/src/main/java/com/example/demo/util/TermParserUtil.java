@@ -20,11 +20,12 @@ public class TermParserUtil {
 
 		String[] strs = originStr.split("");
 
-		StringBuilder regexpResult = new StringBuilder();
+		StringBuilder chosungResult = new StringBuilder();
 		StringBuilder koreanResult = new StringBuilder();
 		StringBuilder englishResult = new StringBuilder();
-		StringBuilder matchResult = new StringBuilder();
+		StringBuilder multiMatchResult = new StringBuilder();
 		StringBuilder numberResult = new StringBuilder();
+		
 		Map<String, Object> resultSet = new HashMap<>();
 
 		for (String str : strs) {
@@ -32,7 +33,7 @@ public class TermParserUtil {
 			// 초성일 때 (ㄱ-ㅎ)
 			if (str.matches("[ㄱ-ㅎ]")) {
 
-				regexpResult.append(str);
+				chosungResult.append(str);
 
 				// 한글일 때 (가-힣)
 			} else if (str.matches("[가-힣]")) {
@@ -51,7 +52,7 @@ public class TermParserUtil {
 				// 빈칸일 때
 			} else if (str.equals(" ")) {
 
-				regexpResult.append(" ");
+				chosungResult.append(" ");
 				koreanResult.append(" ");
 				englishResult.append(" ");
 				
@@ -60,11 +61,15 @@ public class TermParserUtil {
 		}
 		
 		// 한국어 + 영어
-		matchResult.append(koreanResult.toString().trim() + " " + englishResult.toString().trim());
+		multiMatchResult.append(koreanResult.toString().trim() + " " + englishResult.toString().trim());
 		
-		resultSet.put("regexp", regexpResult.toString().trim());
-		resultSet.put("match", matchResult.toString());
+		resultSet.put("chosung", chosungResult.toString().trim());
+		resultSet.put("multiMatch", multiMatchResult.toString());
 		resultSet.put("number", numberResult.toString().trim());
+		
+		System.out.println("chosung: " + chosungResult.toString().trim());
+		System.out.println("multiMatch: " + multiMatchResult.toString().trim());
+		System.out.println("number: " + numberResult.toString().trim());
 		
 		return resultSet;
 	}
